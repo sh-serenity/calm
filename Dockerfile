@@ -5,7 +5,7 @@ RUN apt-get install git
 
 WORKDIR /go
 
-RUN git clone https://sh-serenity:Zhopauho123@github.com/serenity-net-org/calm.git
+RUN git clone https://sh-serenity:Zhopauho123@github.com/sh-serenity/calm.git
 
 WORKDIR /go/calm
 RUN go get github.com/go-sql-driver/mysql github.com/gorilla/sessions github.com/shurcooL/github_flavored_markdown
