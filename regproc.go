@@ -225,7 +225,7 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(result.LastInsertId()) // id добавленного объекта
 		fmt.Println(result.RowsAffected())
 		//msg  := "<html lang=\"ru_RU\"><head><title>Подтверждение почты от serenity-net.org</title></head><body>Подтвердите вашу регистрацию на сайте serenity-net.org, перейдя по <a href=\"http://serenity-net.org/checkemail/" + str +"\">ссылке</a></body></html>"
-		msg := "Подтвердите вашу регистрацию на сайте serenity-net.org, перейдя по ссылке http://serenity-net.org/checkemail/" + str
+		msg := "Подтвердите вашу регистрацию на сайте serenity-net.org, перейдя по ссылке http://k8s.serenity-net.org/checkemail/" + str
 		if err != nil {
 			fmt.Println(err)
 		}
