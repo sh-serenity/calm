@@ -13,9 +13,9 @@ COPY mailrq.go /go/calm
 RUN go build
 
 RUN mkdir /app
-COPY calm /app
-COPY ./static /app
-COPY ./tmpl /app
+RUN cp calm /app
+RUN cp ./static /app
+RUN cp ./tmpl /app
 
 WORKDIR /app
 
