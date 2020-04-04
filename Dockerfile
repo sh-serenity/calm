@@ -12,13 +12,13 @@ RUN go get github.com/go-sql-driver/mysql github.com/gorilla/sessions github.com
 COPY mailrq.go /go/calm
 RUN go build
 
-RUN mkdir /mnt/pv1/app
-RUN cp  calm /mnt/pv1/app
-RUN cp -R ./static /mnt/pv1/app
-RUN cp -R ./tmpl //mnt/pv1/app
+#RUN mkdir /mnt/pv1/app
+COPY calm /mnt/pv1/app
+COPY ./static /mnt/app
+COPY ./tmpl /mnt/pv1/app
 
-WORKDIR /mnt/pv1/app
+WORKDIR /app
 
-CMD /mnt/pv1/app
+CMD /mnt/pv1/app/calm
 
 
