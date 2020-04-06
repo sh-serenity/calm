@@ -76,13 +76,13 @@ func comHandler(w http.ResponseWriter, r *http.Request) {
 				if err != nil {
 					fmt.Println(err)
 				}
+		//		w.Write(github_flavored_markdown.Markdown(comment))
+		//		w.Write(github_flavored_markdown.Markdown([]byte("</div>")))
+				w.Write(github_flavored_markdown.Markdown([]byte("<div>")))
 				w.Write(github_flavored_markdown.Markdown(comment))
+				w.Write([]byte("от: " + fname + " " + sname + ", " + comtime))
 				w.Write(github_flavored_markdown.Markdown([]byte("</div>")))
-		/*		w.Write(github_flavored_markdown.Markdown([]byte("<div">")))
-				w.Write(github_flavored_markdown.Markdown(comment))
-				w.Write([]byte("от: " + username + ", " + comtime))
-				w.Write(github_flavored_markdown.Markdown([]byte("</div>")))
-		*/
+
 
 	t, _ := template.ParseFiles("tmpl/footer.html")
 	t.Execute(w, nil)
