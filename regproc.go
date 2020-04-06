@@ -10,7 +10,6 @@ import (
 	"net/http"
 	"net/mail"
 	"net/smtp"
-	"regexp"
 	"strings"
 )
 type trash struct {
@@ -121,8 +120,8 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 		rchk.Invitech = 0
 	}
 
-	var validemail = regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
-	eu := validemail.FindStringSubmatch(username)
+//	var validemail = regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
+	eu := validStr.FindStringSubmatch(username)
 	if eu == nil {
 		note_username = "email неверный"
 		rchk.Usernameex = 0
@@ -130,7 +129,7 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 		note_username = "email в порядке"
 		rchk.Usernameex = 1
 	}
-	rchk.Usernameex = 1
+//	rchk.Usernameex = 1
 	var ucount int
 	ucount = 0
 	uerr := db.QueryRow("select COUNT(*) from users where username = ?", username).Scan(&ucount)
@@ -218,7 +217,7 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(err)
 		}
 		fmt.Println(str)
-		result, err := db.Exec("insert into users (username,password,fname,sname) values(?,?,MD5(?),?,?)", username, password, fname, sname)
+		result, err := db.Exec("insert into users (username,password,fname,sname) values(?,MD5(?),?,?)", username, password, fname, sname)
 		if err != nil {
 			fmt.Println(err)
 		}
