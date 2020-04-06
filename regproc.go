@@ -98,29 +98,29 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 	var rchk regchk
 	var resume string
 	var note_username, note_password string
-//	var invite = r.FormValue("invite")
+	var invite = r.FormValue("invite")
 	var username = r.FormValue("login")
 	var password = r.FormValue("password")
 	var fname = r.FormValue("fname")
 	var sname = r.FormValue("sname")
 	var conifirm = r.FormValue("conifirm")
-//	var count int
-	//	var invch string
+//	var note_invite string
+	var count int
+		//var invch string
 	fmt.Printf("%s = %s", password, conifirm)
-/*	err := db.QueryRow("select COUNT(*) from invites where invite = ?", invite).Scan(&count)
+	err := db.QueryRow("select COUNT(*) from invites where invite = ?", invite).Scan(&count)
 	fmt.Printf("Number of rows are %d\n", count)
 	if err != nil {
 		fmt.Println(err)
 	}
 	if count > 0 {
-		note_invite = "Инвайт найден"
+		//note_invite = "Инвайт найден"
 		rchk.Invitech = 1
 	} else {
-		note_invite = "Инвайт не найден"
+		//note_invite = "Инвайт не найден"
 		rchk.Invitech = 0
 	}
-*/
-	rchk.Invitech = 1
+
 	var validemail = regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
 	eu := validemail.FindStringSubmatch(username)
 	if eu == nil {
@@ -139,10 +139,10 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(uerr)
 	}
 	if ucount == 0 {
-		note_username = note_username + "Такой email еще не зарегистрирован"
+		note_username = note_username + "Такой логин еще не зарегистрирован"
 		rchk.Usernamereg = 1
 	} else {
-		note_username = "Вы уже регистрировались здесь, с тем же email"
+		note_username = "Вы уже регистрировались здесь, с тем же логином"
 		rchk.Usernamereg = 0
 	}
 
@@ -206,7 +206,7 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 		rchk.sln = 0
 	}
 
-	if rchk.Usernamereg == 1 && rchk.Usernameex == 1 && rchk.Passwordcon == 1 && rchk.Passwordrx == 1 && rchk.Invitech == 1 && rchk.fnrx == 1 {
+	if rchk.Usernamereg == 1 && rchk.Usernameex == 1 && rchk.Passwordcon == 1 && rchk.Passwordrx == 1 && rchk.Invitech == 1 && rchk.fnrx == 1  && rchk.Invitech ==  1{
 /*		result, err := db.Exec("insert into users (username, password) values(?,MD5(?))", username, password)
 		if err != nil {
 			fmt.Println(err)
@@ -218,14 +218,14 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(err)
 		}
 		fmt.Println(str)
-		result, err := db.Exec("insert into hashes (hash, email,password,fname,sname) values(?,?,MD5(?),?,?)", str, username, password, fname, sname)
+		result, err := db.Exec("insert into users (username,password,fname,sname) values(?,?,MD5(?),?,?)", username, password, fname, sname)
 		if err != nil {
 			fmt.Println(err)
 		}
 		fmt.Println(result.LastInsertId()) // id добавленного объекта
 		fmt.Println(result.RowsAffected())
 		//msg  := "<html lang=\"ru_RU\"><head><title>Подтверждение почты от serenity-net.org</title></head><body>Подтвердите вашу регистрацию на сайте serenity-net.org, перейдя по <a href=\"http://serenity-net.org/checkemail/" + str +"\">ссылке</a></body></html>"
-		msg := "Подтвердите вашу регистрацию на сайте serenity-net.org, перейдя по ссылке http://k8s.serenity-net.org/checkemail/" + str
+		/* msg := "Подтвердите вашу регистрацию на сайте serenity-net.org, перейдя по ссылке http://k8s.serenity-net.org/checkemail/" + str
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -234,8 +234,8 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 		resume = "На ваш email: " + username + " отправенна ссылка для его подтвержедения. Перейдите по ссылке, после этого вы получите возможность заходить на сайт."
 		p := &trash{Title: "Завершение регистрации", Note: resume}
 		t, _ := template.ParseFiles("tmpl/tmp1.html")
-		t.Execute(w, p)
-
+		t.Execute(w, p) */
+		http.Redirect(w,r,"/enter/",301)
 	} else {
 		resume = "Данные введе6ны с ошибками. Поправьте и попробуйте снова."
 		url = "/reg/"
