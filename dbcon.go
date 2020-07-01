@@ -7,7 +7,7 @@ import (
 var db *sql.DB
 func dbConnect() (db *sql.DB) {
 	dbDriver := "mysql"
-	dbUser := "cerber"
+	dbUser := "root"
 	dbPass := "OU-Shit"
 	dbHost := "mysql"
 	dbPort := "3306"
