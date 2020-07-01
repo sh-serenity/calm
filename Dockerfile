@@ -9,7 +9,6 @@ RUN git clone https://sh-serenity:c3pozhaby@github.com/sh-serenity/calm.git
 
 WORKDIR /go/calm
 RUN go get github.com/go-sql-driver/mysql github.com/gorilla/sessions github.com/shurcooL/github_flavored_markdown
-COPY mailrq.go /go/calm
 RUN go build
 
 RUN mkdir /app
