@@ -8,7 +8,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: OU-Shit
     volumes:
-      - /opt/serenity/mysql:/var/lib/mysql
+    - /opt/serenity/mysql:/var/lib/mysql
 
   calm:
     container_name: calm      
@@ -18,18 +18,19 @@ services:
     ports:
       - "9001:9001"
     volumes:
-
+    - /opt/calm/files:/files
   web:
     container_name: nginx
     image: nginx:stable
     depends_on:
-      - calm
+    - calm
 
     ports:
       - "80:80"
     volumes:
-      - /opt/calm/conf.d:/etc/nginx/conf.d
-      - /opt/calm/files:/files
+    - /opt/calm/conf.d:/etc/nginx/conf.d
+    - /opt/calm/files:/files
+
     
 
     
