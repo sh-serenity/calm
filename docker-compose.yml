@@ -17,11 +17,13 @@ services:
       - db
     ports:
       - "9001:9001"
+    restart: always
     volumes:
     - /opt/calm:/files
   web:
     container_name: nginx
     image: nginx:stable
+    restart: always
     depends_on:
     - calm
 
