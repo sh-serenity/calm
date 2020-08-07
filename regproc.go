@@ -104,7 +104,6 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 	var sname = r.FormValue("sname")
 	var conifirm = r.FormValue("conifirm")
 //	var note_invite string
-	var count int
 		//var invch string
 	fmt.Printf("%s = %s", password, conifirm)
 
