@@ -107,12 +107,8 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 	var count int
 		//var invch string
 	fmt.Printf("%s = %s", password, conifirm)
-	err := db.QueryRow("select COUNT(*) from invites where invite = ?", invite).Scan(&count)
-	fmt.Printf("Number of rows are %d\n", count)
-	if err != nil {
-		fmt.Println(err)
-	}
-	if count > 0 {
+
+	if if invite == "zombie" {
 		//note_invite = "Инвайт найден"
 		rchk.Invitech = 1
 	} else {
