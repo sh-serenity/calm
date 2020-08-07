@@ -108,7 +108,7 @@ func regprocHandle(w http.ResponseWriter, r *http.Request) {
 		//var invch string
 	fmt.Printf("%s = %s", password, conifirm)
 
-	if if invite == "zombie" {
+	if invite == "zombie" {
 		//note_invite = "Инвайт найден"
 		rchk.Invitech = 1
 	} else {
