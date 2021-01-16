@@ -9,7 +9,7 @@ func dbConnect() (db *sql.DB) {
 	dbDriver := "mysql"
 	dbUser := "root"
 	dbPass := "OU-Shit"
-	dbHost := "mysql"
+	dbHost := "dbhost"
 	dbPort := "3306"
 	dbName := "shwork"
 	db, err := sql.Open(dbDriver, dbUser +":"+ dbPass +"@tcp("+ dbHost +":"+ dbPort +")/"+ dbName +"?charset=utf8")
